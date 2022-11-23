@@ -29,17 +29,17 @@ const createUser = (obj) => {
   const newUser = {
     id: id++,
     first_name: obj.first_name,
-    last_name: obj.last_name,
-    email: obj.email,
-    password: obj.password,
-    birthday: obj.birthday,
-    is_completed: false
+    last_name: obj.last_name || 'Last name unknown',
+    email: obj.email || 'email unknown',
+    password: obj.password || 'password unknown',
+    //? birthday: obj.birthday ? obj.birthday:'birthday unknown'
+    birthday: obj.birthday || 'birthday unknown'
   }
   UsersDB.push(newUser)
   return newUser
 }
 
-module.exports={
+module.exports = {
   findAllUsers,
   findUsersById,
   createUser

@@ -1,4 +1,4 @@
-//? todo lo relacionado al req y res
+//? file's imports
 
 const userControllers = require('./users.controllers')
 /*
@@ -21,14 +21,23 @@ const getUserById = (req, res) => {
 }
 
 const postUser = (req, res) => {
-  const { first_name, last_name } = req.body
-  if (first_name && last_name) {
-    const data = userControllers.createUser({ first_name, last_name })
+  const { first_name, last_name, email, password, birthday } = req.body
+  if (first_name) {
+    const data = userControllers.createUser({ first_name, last_name, email, password, birthday })
     res.status(201).json(data)
   } else {
-    res.status(400).json({ message: 'Invalid Data', fields: { first_name: 'string', last_name: 'string' } })
+    res.status(400).json({
+      message: 'Invalid Data',
+      fields: {
+        first_name: 'string*',
+        last_name: 'string',
+        email: 'string',
+        password: password,
+        birthday: birthday
+      },
+    });
   }
-}
+};
 
 module.exports = {
   getAllUsers,
